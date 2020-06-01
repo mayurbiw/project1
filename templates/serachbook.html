@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{%block title%}Search Results{% endblock %}
+
+{% block username %}{{ username.capitalize() }}{% endblock %}
+
+{%block logout%} Logout {% endblock %}
+
+{% block body %}
+
+<h1>Number of search results : {{numResullts}}</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+    </tr>
+  </thead>
+<tbody>
+
+{% for book in books %}
+<tr>
+      <th scope="row">{{loop.index}}</th>
+      <td><a href="/bookdetails/{{ book.isbn }}"> {{ book.title }} </a></td>
+    </tr>
+{% endfor %}
+
+</tbody>
+</table>
+
+{% endblock %}

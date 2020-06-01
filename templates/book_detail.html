@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{%block title%} Book details {% endblock %}
+
+{% block username %}{{ username.capitalize() }}{% endblock %}
+
+{%block logout%} Logout {% endblock %}
+
+{% block body %}
+
+
+<h1>Book Details</h1>
+
+<div id="book_detail">
+<table class="table">
+  	<tbody>
+  		<tr>
+  			<td>Author</td>
+        <td>{{book_det.author}}</td>
+  		</tr>
+      <tr>
+  		  <td>Title</td>
+        <td>{{book_det.title}}</td>
+  		</tr>
+      <tr>
+  			<td>year</td>
+        <td>{{book_det.year}}</td>
+  		</tr>
+      <tr>
+  			<td>ISBN</td>
+        <td>{{book_det.isbn}}</td>
+  		</tr>
+      <tr>
+  			<td>Total Ratings</td>
+        <td>{{work_ratings_count}}</td>
+  		</tr>
+      <tr>
+        <td>Average Rating</td>
+        <td>{{average_rating}}</td>
+      </tr>
+  	</tbody>
+  </table>
+
+{% if book_allow_rev %}
+<form action="/bookdetails/submit_review" method="get">
+  <input type="hidden" name="isbn"  value="{{book_det.isbn}}">
+  your review
+  <br>
+  <textarea name="review_text" rows="8" cols="80"></textarea>
+  <br>
+  <label for="">Rating out of 5:</label>
+  <br>
+  <input type="number" name="rating" value="" min="1" max="5" > <br> <br>
+  <button type="submit" class="btn btn-dark" name="button">submit review</button>
+</form>
+
+{% else  %}
+
+<label for="">You have already given review for this book</label>
+<div id="reviews">
+{% endif %}
+
+{% for b in book_rev %}
+
+  <h1></h1>
+               {{ b.username }} has given raing of {{ b.rating }} out of 5.
+               <label for="review">{{b.review_text}}</label>
+
+               {%  if username == b.username  %}
+                <button type="button" class="btn btn-dark" onclick="window.location.href = '/bookdetails/edit/{{ book_det.isbn }}/{{username}}';" name="edit" data-isbn = "{{book_det.isbn}}">Edit</button>
+                <button type="button" class="btn btn-dark" onclick="window.location.href = '/bookdetails/delete/{{ book_det.isbn }}/{{username}}';" name="delete" data-isbn = "{{book_det.isbn}}">Delete</button>
+               {% endif %}
+
+  {% endfor %}
+
+</div>
+</div>
+
+
+{% endblock %}

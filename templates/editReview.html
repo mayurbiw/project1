@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{%block title%}Edit review{% endblock %}
+
+{% block username %}{{ username.capitalize() }}{% endblock %}
+
+{%block logout%} Logout {% endblock %}
+
+{% block body %}
+
+<h1>Edit Review</h1>
+<form action="/edit_review" method="get">
+<input type="hidden" name="isbn" value="{{review_details.isbn}}">your review
+<br>
+<textarea name="review_text" rows="8" cols="80"></textarea>
+<br>
+<label for="">Rating out of 5:</label>
+<br>
+<input type="number" name="rating" value="">
+<br>
+<br>
+<button type="submit" class="btn btn-dark" name="button">Submit Review</button>
+</form>
+{% endblock %}

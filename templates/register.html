@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{%block title%}Sign up{% endblock %}
+
+{% block username %}{% endblock %}
+
+{% block body %}
+<form action="after_register" method="post">
+	<div id="register">
+		<div class="form-group">
+			<label for="name">name</label>
+			<input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="full name">
+		</div>
+		<div class="form-group">
+			<label for="username">username</label>
+			<div class="input-group">
+				<div class="input-group-prepend"> <span class="input-group-text" id="basic-addon1">@</span>
+				</div>
+				<input type="text" class="form-control" name="username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">Password</label>
+			<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+		</div>
+		<button type="submit" class="btn btn-primary">Sign up</button>
+		<br>
+		<label for="message">Already a member</label> <a href="/">login here</a>
+	</div>
+</form>
+{% endblock %}
